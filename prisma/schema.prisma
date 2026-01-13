@@ -1,0 +1,55 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")   
+}
+
+generator client {
+  provider = "prisma-client-js"    
+}
+
+model City {
+  id          Int          @id @default(autoincrement())
+  name        String
+  country     String
+
+  flights     Flight[]
+  attractions Attraction[]
+
+  createdAt  DateTime @default(now())
+}
+
+model Flight {
+  id               Int      @id @default(autoincrement())
+  flightName       String
+  arrivalAirport   String
+  departureAirport String
+  arrivalTime      DateTime
+  departureTime    DateTime
+  flightLogo       String
+  fare             Float
+
+  cityId           Int
+  city             City     @relation(fields: [cityId], references: [id], onDelete: Cascade)
+
+  createdAt        DateTime @default(now())
+}
+
+model Attraction {
+  id                 Int      @id @default(autoincrement())
+  attractionName     String
+  attractionSlug     String   @unique
+  additionalInfo     String?
+  cancellationPolicy String?
+  images             String
+  price              Float
+  whatsIncludes      String?
+
+  country            String
+  cityName           String
+
+  cityId             Int
+  city               City     @relation(fields: [cityId], references: [id], onDelete: Cascade)
+
+  createdAt          DateTime @default(now())
+}
+
