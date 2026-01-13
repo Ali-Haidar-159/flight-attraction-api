@@ -6,7 +6,7 @@ A comprehensive REST API built with Node.js, Express.js, and TypeScript for mana
 
 This project is part of the **W3 Engineers Ltd** assignment to build a travel guide solution with the following core functionalities:
 
-1. **Flight Search**: Search for flights between locations and display available flight lists
+1. **Flight Search**: Search for flights between locations (Covered only Mumbai , Dhaka , Kolkata) in this project
 2. **Attraction Search**: Search for attractions within specific locations
 
 ##  Tech Stack
